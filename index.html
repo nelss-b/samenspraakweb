@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=timeline-scroll-2">
+  <link rel="stylesheet" href="assets/styles.css?v=solution-story-2">
 </head>
 <body>
   <a class="skip-link" href="#main">Naar inhoud</a>
@@ -160,59 +160,82 @@
     <section class="section solution" id="oplossing" aria-labelledby="solution-title">
       <div class="section-intro reveal">
         <p class="eyebrow">Onze oplossing</p>
-        <h2 id="solution-title">Van buurtgevoel naar participatieverslag in drie stappen.</h2>
-        <p>Samenspraak maakt participatie laagdrempelig voor bewoners en bruikbaar voor de mensen die het besluit moeten voorbereiden.</p>
+        <h2 id="solution-title">Van losse zorgen naar een besluitwaardig participatieverslag.</h2>
+        <p>Samenspraak maakt zichtbaar wat er in de buurt leeft, zonder dat bewoners juridische taal hoeven te spreken of gemeenten handmatig door stapels reacties moeten werken.</p>
       </div>
-      <div class="steps">
-        <article class="step reveal">
-          <div class="solution-visual plan-visual" aria-hidden="true">
-            <div class="browser-bar"><span></span><span></span><span></span></div>
-            <div class="plan-card">
-              <strong>Schapenweide uitgelegd</strong>
-              <p>450 woningen · groen · verkeer · planning</p>
-              <span class="language-pill">B1 taal</span>
+      <div class="solution-story reveal" data-solution-story data-active-step="0">
+        <div class="solution-story-stage">
+          <div class="story-copy" aria-label="Samenspraak workflow">
+            <div class="story-progress" aria-hidden="true">
+              <span></span>
+            </div>
+            <article class="story-step is-active" data-story-step="0">
+              <span class="step-kicker">Stap 1</span>
+              <h3>Plan in gewone taal</h3>
+              <p>Complexe planstukken worden vertaald naar begrijpelijke uitleg over woningen, groen, verkeer en planning.</p>
+            </article>
+            <article class="story-step" data-story-step="1">
+              <span class="step-kicker">Stap 2</span>
+              <h3>Zorgen komen binnen</h3>
+              <p>Bewoners reageren in hun eigen woorden. Samenspraak bewaart de menselijke toon, maar haalt de ruis uit de inbox.</p>
+            </article>
+            <article class="story-step" data-story-step="2">
+              <span class="step-kicker">Stap 3</span>
+              <h3>Samenspraak clustert</h3>
+              <p>AI groepeert reacties rond thema’s als verkeer, groen en geluid, zodat patronen direct zichtbaar worden.</p>
+            </article>
+            <article class="story-step" data-story-step="3">
+              <span class="step-kicker">Stap 4</span>
+              <h3>Reviewbaar verslag</h3>
+              <p>De output wordt een controleerbaar participatieverslag met conceptreacties, klaar voor professionele beoordeling.</p>
+            </article>
+          </div>
+
+          <div class="story-product" aria-hidden="true">
+            <div class="product-window">
+              <div class="product-topbar">
+                <span></span><span></span><span></span>
+                <strong>Samenspraak</strong>
+              </div>
+              <div class="product-grid">
+                <section class="product-panel plan-panel">
+                  <span class="panel-label">Planstuk</span>
+                  <p class="legal-line long"></p>
+                  <p class="legal-line"></p>
+                  <p class="legal-line short"></p>
+                  <div class="plain-card">
+                    <strong>Schapenweide uitgelegd</strong>
+                    <p>450 woningen, meer groen en nieuwe routes. Wat betekent dit voor uw straat?</p>
+                    <span>B1 taal</span>
+                  </div>
+                </section>
+
+                <section class="product-panel input-panel">
+                  <span class="panel-label">Bewonersinput</span>
+                  <div class="note note-one">Meer verkeer op de Soestdijkseweg?</div>
+                  <div class="note note-two">Blijft het groene karakter behouden?</div>
+                  <div class="note note-three">Wat gebeurt er met geluid tijdens bouw?</div>
+                </section>
+
+                <section class="product-panel cluster-panel">
+                  <span class="panel-label">AI analyseert</span>
+                  <div class="cluster-row"><span>Verkeer</span><strong>38 reacties</strong></div>
+                  <div class="cluster-row"><span>Groen</span><strong>24 reacties</strong></div>
+                  <div class="cluster-row"><span>Geluid</span><strong>17 reacties</strong></div>
+                </section>
+
+                <section class="product-panel report-panel">
+                  <span class="panel-label">Participatieverslag</span>
+                  <div class="report-sheet">
+                    <strong>Conceptreactie verkeer</strong>
+                    <p>Reacties zijn geclusterd en voorzien van een controleerbare beantwoording.</p>
+                    <div class="report-status">Klaar voor review</div>
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
-          <div>
-            <span class="step-kicker">Stap 1</span>
-            <h3>Plan in gewone taal</h3>
-            <p>Een bewoner vult een postcode in en krijgt het bouwplan uitgelegd op B1-niveau, in de taal die past.</p>
-          </div>
-        </article>
-        <article class="step reveal">
-          <div class="solution-visual feedback-visual" aria-hidden="true">
-            <div class="phone-shell">
-              <span class="phone-notch"></span>
-              <strong>Waar maakt u zich zorgen over?</strong>
-              <span class="theme-chip">Verkeer</span>
-              <span class="theme-chip">Groen</span>
-              <span class="theme-chip">Geluid</span>
-              <div class="voice-line"></div>
-            </div>
-          </div>
-          <div>
-            <span class="step-kicker">Stap 2</span>
-            <h3>Zorgen per thema</h3>
-            <p>Verkeer, groen, geluid en bouwhoogte worden direct gestructureerd, zonder de menselijke toon kwijt te raken.</p>
-          </div>
-        </article>
-        <article class="step reveal">
-          <div class="solution-visual report-visual" aria-hidden="true">
-            <div class="dashboard-card">
-              <div class="dashboard-row strong"></div>
-              <div class="dashboard-row"></div>
-              <div class="dashboard-row short"></div>
-              <div class="cluster-bar"><span style="width:74%"></span></div>
-              <div class="cluster-bar"><span style="width:52%"></span></div>
-              <div class="cluster-bar"><span style="width:38%"></span></div>
-            </div>
-          </div>
-          <div>
-            <span class="step-kicker">Stap 3</span>
-            <h3>Reviewbaar verslag</h3>
-            <p>AI clustert input, maakt conceptreacties en levert een participatieverslag op dat een ambtenaar kan controleren.</p>
-          </div>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -277,6 +300,6 @@
     <a href="mailto:hello@samenspraak.ai">hello@samenspraak.ai</a>
   </footer>
 
-  <script src="assets/script.js?v=timeline-scroll-2"></script>
+  <script src="assets/script.js?v=solution-story-2"></script>
 </body>
 </html>

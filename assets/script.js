@@ -3,9 +3,12 @@ const demoVideoUrl = "";
 const header = document.querySelector("[data-header]");
 const demoFrame = document.querySelector("[data-demo-frame]");
 const scrollTimelines = [...document.querySelectorAll("[data-scroll-timeline]")];
+const solutionStories = [...document.querySelectorAll("[data-solution-story]")];
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let timelineRaf = null;
 let timelineActive = false;
+let solutionStoryRaf = null;
+let solutionStoryActive = false;
 
 const setHeaderState = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -90,6 +93,39 @@ const requestTimelineUpdate = () => {
   timelineRaf = window.requestAnimationFrame(updateScrollTimelines);
 };
 
+const updateSolutionStories = () => {
+  solutionStoryRaf = null;
+  if (prefersReducedMotion.matches) return;
+
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const thresholds = [0, 0.3, 0.6, 0.86];
+
+  solutionStories.forEach((story) => {
+    const rect = story.getBoundingClientRect();
+    const scrollableDistance = Math.max(1, rect.height - viewportHeight);
+    const rawProgress = clamp((viewportHeight * 0.42 - rect.top) / scrollableDistance, 0, 1);
+    const progress = Number(rawProgress.toFixed(4));
+    const steps = [...story.querySelectorAll(".story-step")];
+    let activeStep = 0;
+
+    thresholds.forEach((threshold, index) => {
+      if (progress + 0.035 >= threshold) activeStep = index;
+    });
+
+    story.style.setProperty("--story-progress", progress);
+    story.dataset.activeStep = String(activeStep);
+
+    steps.forEach((step, index) => {
+      step.classList.toggle("is-active", index === activeStep);
+    });
+  });
+};
+
+const requestSolutionStoryUpdate = () => {
+  if (!solutionStoryActive || solutionStoryRaf || prefersReducedMotion.matches) return;
+  solutionStoryRaf = window.requestAnimationFrame(updateSolutionStories);
+};
+
 const initializeScrollTimelines = () => {
   if (!scrollTimelines.length) return;
 
@@ -115,6 +151,32 @@ const initializeScrollTimelines = () => {
   updateScrollTimelines();
 };
 
+const initializeSolutionStories = () => {
+  if (!solutionStories.length) return;
+
+  if (prefersReducedMotion.matches) {
+    solutionStories.forEach((story) => {
+      story.style.setProperty("--story-progress", 1);
+      story.dataset.activeStep = "3";
+      story.querySelectorAll(".story-step").forEach((step) => {
+        step.classList.add("is-active");
+      });
+    });
+    return;
+  }
+
+  const storyObserver = new IntersectionObserver((entries) => {
+    solutionStoryActive = entries.some((entry) => entry.isIntersecting);
+    requestSolutionStoryUpdate();
+  }, {
+    rootMargin: "40% 0px 40% 0px",
+    threshold: 0
+  });
+
+  solutionStories.forEach((story) => storyObserver.observe(story));
+  updateSolutionStories();
+};
+
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -129,8 +191,11 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 window.addEventListener("scroll", setHeaderState, { passive: true });
 window.addEventListener("scroll", requestTimelineUpdate, { passive: true });
+window.addEventListener("scroll", requestSolutionStoryUpdate, { passive: true });
 window.addEventListener("resize", requestTimelineUpdate);
+window.addEventListener("resize", requestSolutionStoryUpdate);
 setHeaderState();
 mountDemoVideo();
 initializeScrollTimelines();
+initializeSolutionStories();
 document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
