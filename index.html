@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/styles.css?v=timeline-scroll-2">
 </head>
 <body>
   <a class="skip-link" href="#main">Naar inhoud</a>
@@ -33,7 +33,7 @@
       <div class="hero-shade"></div>
       <div class="hero-content reveal">
         <p class="eyebrow">Hackathon 2026 · YIMBY · Samenspraak</p>
-        <h1 id="hero-title">Nederland bouwt te weinig. Samenspraak haalt procedures uit de wachtstand.</h1>
+        <h1 id="hero-title">Nederland bouwt te weinig. <span class="hero-brand-word">Samenspraak</span> haalt procedures uit de wachtstand.</h1>
         <p class="hero-copy">Een AI-tool die bewoners in begrijpelijke taal laat meepraten en zienswijzen omzet in een bruikbaar participatieverslag. Sneller draagvlak, minder ruis, meer woningen.</p>
         <div class="hero-actions">
           <a class="button primary" href="#demo">Bekijk de demo</a>
@@ -77,17 +77,81 @@
     </section>
 
     <section class="case section-dark" id="case" aria-labelledby="case-title">
-      <div class="case-media reveal">
-        <img src="assets/images/case-construction.jpg" alt="Bouwplaats vanuit de lucht">
-      </div>
       <div class="case-content reveal">
         <p class="eyebrow">Case study</p>
-        <h2 id="case-title">Schapenweide: 20 jaar stilstand, nul woningen.</h2>
-        <p>Schapenweide in Muiden laat zien waar het misgaat: niet bij de schop in de grond, maar in de jaren ervoor. Zienswijzen, natuur, stikstof en beroepstrajecten stapelen zich op totdat ieder besluit zwaar wordt.</p>
-        <div class="timeline" aria-label="Projectfases">
-          <div><strong>1-2 jaar</strong><span>Daadwerkelijk bouwen</span></div>
-          <div><strong>3-8 jaar</strong><span>Planprocedure en zienswijzen</span></div>
-          <div><strong>20 jaar</strong><span>Schapenweide stilstand</span></div>
+        <h2 id="case-title">Schapenweide Bilthoven laat zien waar Samenspraak moet spelen.</h2>
+        <p>De Schapenweide is een ontwikkellocatie van 13,3 hectare in De Bilt, met ruimte voor maximaal 450 woningen en 25.000 m2 Life Sciences. De echte spanning zit niet in de bouw, maar in de fases waarin participatie, zienswijzen en vergunningstukken elkaar raken.</p>
+        <p class="case-source">Bron: Samenspraak-Wedges deck, Gemeente De Bilt, AM.</p>
+      </div>
+
+      <div class="case-layout">
+        <aside class="location-card reveal" aria-label="Schapenweide Bilthoven context">
+          <div class="case-photo">
+            <img src="assets/images/schapenweide-de-bilt.webp" alt="Luchtfoto van de Schapenweide in De Bilt">
+          </div>
+          <div class="location-meta">
+            <p class="eyebrow">Bilthoven / De Bilt</p>
+            <h3>Groene ontwikkellocatie, grote procedurele opgave.</h3>
+            <dl>
+              <div><dt>Gebied</dt><dd>13,3 ha</dd></div>
+              <div><dt>Programma</dt><dd>450 woningen</dd></div>
+              <div><dt>Werken</dt><dd>25.000 m2 Life Sciences</dd></div>
+            </dl>
+          </div>
+        </aside>
+
+        <div class="timeline-scroll reveal" data-scroll-timeline>
+          <div class="timeline-stage">
+            <div class="timeline-rail" aria-hidden="true">
+              <span class="timeline-line-base"></span>
+              <span class="timeline-line-fill"></span>
+            </div>
+            <ol class="process-timeline" aria-label="Proces van grond tot sleutel">
+              <li class="timeline-phase phase-green" data-step="0">
+                <span class="phase-node" aria-hidden="true">1</span>
+                <div class="phase-content">
+                  <span class="phase-kicker">Fase 1 · 6-24 mnd</span>
+                  <h3>Grondpositie &amp; haalbaarheid</h3>
+                  <p>Privaat. Niet de bottleneck.</p>
+                </div>
+              </li>
+              <li class="timeline-phase phase-gold critical-path" data-step="1">
+                <span class="phase-node" aria-hidden="true">2</span>
+                <div class="phase-content">
+                  <span class="phase-kicker">Fase 2 · 1-3 jaar</span>
+                  <h3>Ontwikkelperspectief / visie</h3>
+                  <p>Bureaucratische onderhandelingen.</p>
+                  <span class="phase-tag">Vertrager</span>
+                </div>
+              </li>
+              <li class="timeline-phase phase-red critical-path" data-step="2">
+                <span class="phase-node" aria-hidden="true">3</span>
+                <div class="phase-content">
+                  <span class="phase-kicker">Fase 3 · 3-8 jaar</span>
+                  <h3>Bestemmingsplan / omgevingsplan</h3>
+                  <p>Zienswijzen, stikstof, Raad van State.</p>
+                  <span class="phase-tag">Blokkeerder</span>
+                </div>
+              </li>
+              <li class="timeline-phase phase-gold critical-path" data-step="3">
+                <span class="phase-node" aria-hidden="true">4</span>
+                <div class="phase-content">
+                  <span class="phase-kicker">Fase 4 · 6-12 mnd</span>
+                  <h3>Omgevingsvergunning</h3>
+                  <p>Afhankelijk van fase 3.</p>
+                  <span class="phase-tag">Vertrager</span>
+                </div>
+              </li>
+              <li class="timeline-phase phase-green" data-step="4">
+                <span class="phase-node" aria-hidden="true">5</span>
+                <div class="phase-content">
+                  <span class="phase-kicker">Fase 5 · 1-2 jaar</span>
+                  <h3>Bouwvoorbereiding &amp; bouw</h3>
+                  <p>Aannemer. Niet de bottleneck.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
     </section>
@@ -100,7 +164,14 @@
       </div>
       <div class="steps">
         <article class="step reveal">
-          <img src="assets/images/resident-plan.jpg" alt="Bewoners bekijken samen een bouwplan">
+          <div class="solution-visual plan-visual" aria-hidden="true">
+            <div class="browser-bar"><span></span><span></span><span></span></div>
+            <div class="plan-card">
+              <strong>Schapenweide uitgelegd</strong>
+              <p>450 woningen · groen · verkeer · planning</p>
+              <span class="language-pill">B1 taal</span>
+            </div>
+          </div>
           <div>
             <span class="step-kicker">Stap 1</span>
             <h3>Plan in gewone taal</h3>
@@ -108,7 +179,16 @@
           </div>
         </article>
         <article class="step reveal">
-          <img src="assets/images/resident-feedback.jpg" alt="Iemand deelt feedback via een smartphone">
+          <div class="solution-visual feedback-visual" aria-hidden="true">
+            <div class="phone-shell">
+              <span class="phone-notch"></span>
+              <strong>Waar maakt u zich zorgen over?</strong>
+              <span class="theme-chip">Verkeer</span>
+              <span class="theme-chip">Groen</span>
+              <span class="theme-chip">Geluid</span>
+              <div class="voice-line"></div>
+            </div>
+          </div>
           <div>
             <span class="step-kicker">Stap 2</span>
             <h3>Zorgen per thema</h3>
@@ -116,7 +196,16 @@
           </div>
         </article>
         <article class="step reveal">
-          <img src="assets/images/report-review.jpg" alt="Professional bekijkt een rapport op een laptop">
+          <div class="solution-visual report-visual" aria-hidden="true">
+            <div class="dashboard-card">
+              <div class="dashboard-row strong"></div>
+              <div class="dashboard-row"></div>
+              <div class="dashboard-row short"></div>
+              <div class="cluster-bar"><span style="width:74%"></span></div>
+              <div class="cluster-bar"><span style="width:52%"></span></div>
+              <div class="cluster-bar"><span style="width:38%"></span></div>
+            </div>
+          </div>
           <div>
             <span class="step-kicker">Stap 3</span>
             <h3>Reviewbaar verslag</h3>
@@ -155,18 +244,18 @@
       </div>
       <div class="team-grid">
         <article class="team-card reveal">
-          <div class="avatar">N</div>
+          <img class="avatar-photo" src="assets/images/nils.jpeg" alt="Portretfoto van Nils Beijeman">
           <h3>Nils</h3>
           <p class="role">Co-founder · Strategy</p>
-          <p>Strategieconsultant met achtergrond in vastgoedrecht. Ziet hoe trage processen bouwprojecten en woningzoekenden raken.</p>
-          <a href="mailto:hello@samenspraak.ai">Contact</a>
+          <p>Strategie- en businessachtergrond via Metyis en IE Business School. Brengt de procedurele kant van woningbouw terug naar een helder verhaal.</p>
+          <a href="https://www.linkedin.com/in/nils-beijeman/" target="_blank" rel="noreferrer">LinkedIn</a>
         </article>
         <article class="team-card reveal">
-          <div class="avatar clay">F</div>
+          <img class="avatar-photo" src="assets/images/floris.jpeg" alt="Portretfoto van Floris Visser">
           <h3>Floris</h3>
           <p class="role">Co-founder · Product &amp; Technology</p>
-          <p>Bouwt de technologie achter Samenspraak en vertaalt AI naar concrete workflows voor echte gebruikers.</p>
-          <a href="mailto:hello@samenspraak.ai">Contact</a>
+          <p>Product- en ondernemende achtergrond via cicle skin en Erasmus School of Economics. Vertaalt AI naar concrete workflows voor echte gebruikers.</p>
+          <a href="https://www.linkedin.com/in/floris-l-c-visser/" target="_blank" rel="noreferrer">LinkedIn</a>
         </article>
       </div>
     </section>
@@ -187,6 +276,6 @@
     <a href="mailto:hello@samenspraak.ai">hello@samenspraak.ai</a>
   </footer>
 
-  <script src="assets/script.js"></script>
+  <script src="assets/script.js?v=timeline-scroll-2"></script>
 </body>
 </html>
