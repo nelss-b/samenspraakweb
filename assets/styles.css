@@ -286,6 +286,8 @@ h3 { margin: 0; font-size: 21px; line-height: 1.2; }
 }
 
 .location-card {
+  position: sticky;
+  top: 112px;
   overflow: hidden;
   border-radius: 8px;
   background: rgba(255, 253, 248, 0.08);
@@ -873,6 +875,10 @@ h3 { margin: 0; font-size: 21px; line-height: 1.2; }
   .case {
     padding: 78px 20px;
     gap: 32px;
+  }
+  .location-card {
+    position: relative;
+    top: auto;
   }
   .timeline-scroll { min-height: 340vh; }
   .timeline-stage { top: 84px; min-height: calc(100vh - 104px); }
