@@ -754,11 +754,16 @@ h3 { margin: 0; font-size: 21px; line-height: 1.2; }
   box-shadow: var(--shadow);
 }
 
-.demo-frame img, .demo-frame iframe {
+.demo-frame img, .demo-frame iframe, .demo-frame video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border: 0;
+}
+
+.demo-frame video {
+  display: block;
+  background: var(--ink-950);
 }
 
 .demo-frame img { filter: brightness(0.45) saturate(0.7); }
