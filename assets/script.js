@@ -2,15 +2,27 @@ const demoVideoUrl = "";
 
 const header = document.querySelector("[data-header]");
 const demoFrame = document.querySelector("[data-demo-frame]");
+const scrollTimelines = [...document.querySelectorAll("[data-scroll-timeline]")];
 const solutionStories = [...document.querySelectorAll("[data-solution-story]")];
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let timelineRaf = null;
 let solutionStoryRaf = null;
 let solutionStoryActive = false;
 
-if (window.location.hash) {
-  history.replaceState(null, "", window.location.pathname + window.location.search);
-  window.scrollTo(0, 0);
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
 }
+
+const startAtTop = () => {
+  if (window.location.hash) {
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+
+  window.scrollTo(0, 0);
+};
+
+startAtTop();
+window.addEventListener("pageshow", startAtTop);
 
 const setHeaderState = () => {
   header.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -55,6 +67,47 @@ const mountDemoVideo = () => {
 };
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+const updateScrollTimelines = () => {
+  timelineRaf = null;
+
+  if (!scrollTimelines.length) return;
+
+  if (prefersReducedMotion.matches) {
+    scrollTimelines.forEach((timeline) => {
+      timeline.classList.add("is-static");
+      timeline.style.setProperty("--timeline-progress", 1);
+      timeline.querySelectorAll(".timeline-phase").forEach((phase) => {
+        phase.classList.add("is-revealed");
+      });
+    });
+    return;
+  }
+
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+  scrollTimelines.forEach((timeline) => {
+    timeline.classList.remove("is-static");
+    const rect = timeline.getBoundingClientRect();
+    const phases = [...timeline.querySelectorAll(".timeline-phase")];
+    const progress = clamp((viewportHeight * 0.55 - rect.top) / Math.max(1, rect.height), 0, 1);
+    const activeIndex = Math.min(phases.length - 1, Math.round(progress * (phases.length - 1)));
+
+    timeline.style.setProperty("--timeline-progress", progress.toFixed(4));
+
+    phases.forEach((phase, index) => {
+      const revealThreshold = phases.length <= 1 ? 0 : index / (phases.length - 1);
+
+      phase.classList.toggle("is-revealed", progress + 0.04 >= revealThreshold);
+      phase.classList.toggle("is-active", index === activeIndex);
+    });
+  });
+};
+
+const requestTimelineUpdate = () => {
+  if (timelineRaf) return;
+  timelineRaf = window.requestAnimationFrame(updateScrollTimelines);
+};
 
 const updateSolutionStories = () => {
   solutionStoryRaf = null;
@@ -128,9 +181,14 @@ const revealObserver = new IntersectionObserver((entries) => {
 });
 
 window.addEventListener("scroll", setHeaderState, { passive: true });
+window.addEventListener("scroll", requestTimelineUpdate, { passive: true });
 window.addEventListener("scroll", requestSolutionStoryUpdate, { passive: true });
-window.addEventListener("resize", requestSolutionStoryUpdate);
+window.addEventListener("resize", () => {
+  requestTimelineUpdate();
+  requestSolutionStoryUpdate();
+});
 setHeaderState();
 mountDemoVideo();
+updateScrollTimelines();
 initializeSolutionStories();
 document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
